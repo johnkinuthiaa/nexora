@@ -20,3 +20,16 @@ body {
   font-family: "Sigmar", system-ui;
   font-weight: 900;
 }
+.open__to__work{
+  animation-name: blink ;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  animation-direction: normal;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes blink {
+
+}
