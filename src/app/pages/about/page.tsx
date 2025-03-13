@@ -1,4 +1,9 @@
+import techStack from "@/utils/techStack";
+import Image from "next/image";
+
+
 export default function AboutUs(){
+
     return(
         <div className={"w-[80%] flex flex-col justify-center content-center items-center m-[10px auto] "}>
             <h1 className={"font-bold text-2xl font-poppins"}>About author</h1>
@@ -47,6 +52,24 @@ export default function AboutUs(){
                 </div>
                 <div>
                     <div className={""}>What i&#39;m reading</div>
+                </div>
+
+            </div>
+            <div className={"flex flex-col mt-20"}>
+                <h2>My tech stack</h2>
+                <div className={"flex flex-wrap w-[50%] gap-4 items-center justify-center m-[auto]"}>
+                    {techStack.map((tech,index)=>(
+                        <div key={index} className={"flex flex-col leading-7"}>
+                            <Image
+                                src={tech.image}
+                                alt={tech.name}
+                                height={100}
+                                width={100}
+                                objectFit={"cover"}
+                            />
+                            <p>{tech.name}</p>
+                        </div>
+                    ))}
                 </div>
 
             </div>
