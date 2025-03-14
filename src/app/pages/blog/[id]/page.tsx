@@ -58,7 +58,9 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             const data =await response.json()
             if(data.statusCode !==200){
                 setMessage(data.message)
+
             }else{
+                console.log(data)
                 setBlog(data?.content)
             }
         }else{
