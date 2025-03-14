@@ -11,7 +11,7 @@ export default function AboutUs(){
             <div className={" mt-20 flex flex-col text-4xl font-medium  leading-17 about__container"}>
                 <div className={"flex"}>
                     <h2 className={""}>Hi, I&#39;m</h2>
-                    <img src={"https://i.pinimg.com/236x/ff/f5/15/fff515feeac0de5f8138941afd1cd6c9.jpg"} alt={"profile"} className={"h-20 w-20 rounded-2xl ml-3 mr-3"}/>
+                    <Image width={80} height={40} src={"https://i.pinimg.com/236x/ff/f5/15/fff515feeac0de5f8138941afd1cd6c9.jpg"} alt={"profile"} className={"object-cover rounded-2xl ml-3 mr-3"}/>
                     <h2>, <mark className={"bg-yellow-500"}>John Kinuthiaa</mark><span className={"text-blue font-extrabold"}> !</span></h2>
                 </div>
                 <div className={"flex"}>
@@ -20,7 +20,7 @@ export default function AboutUs(){
                 <div className={"flex gap-3 justify-between"}>
                     <h2 className={"text-orange-400"}>Nevani Housing.</h2>
                     <div className={"flex rounded-full p-2 gap-2 border-2 w-fit items-center font-medium text-xl m-3 open__to__work"}>
-                        <div className={"bg-green-500 rounded-full p-2 h-4 w-4 flex items-center justify-center relative -z-10"}>
+                        <div className={"bg-green-500 rounded-full p-2 h-4 w-4 flex items-center justify-center relative -z-10 animate-pulse"}>
                             <div className={"bg-green-100 rounded-full h-2 w-2 absolute"}></div>
                         </div>
                         <p>Open to work</p>
@@ -59,10 +59,12 @@ export default function AboutUs(){
                 </div>
                 <div className={"relative"}>
                     <div className={"absolute z-1 bg-orange-500 text-white"}>What i&#39;m reading</div>
-                    <img src={"https://i.pinimg.com/236x/d3/d2/4b/d3d24bbe8d9e2fe8617da09617ccac0c.jpg"}
+                    <Image src={"https://i.pinimg.com/236x/d3/d2/4b/d3d24bbe8d9e2fe8617da09617ccac0c.jpg"}
                          alt={"book i read daily"}
-                         className={"w-full h-full p-2"}
-                    ></img>
+                           width={90}
+                           height={90}
+                         className={"w-full h-full p-2 object-fit"}
+                    ></Image>
                 </div>
 
             </div>

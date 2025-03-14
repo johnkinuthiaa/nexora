@@ -6,7 +6,7 @@ type Stack ={
 export const techStack:Stack[] =[
     {name:"Java",image:"https://cdn.svgporn.com/logos/java.svg",level:"Intermediate"},
     {name:"Typescript",image:"https://cdn.svgporn.com/logos/typescript-icon.svg",level:"Intermediate"},
-    {name:"Golang",image:"https://cdn.svgporn.com/logos/goland.svg",level:"Beginner"},
+    {name:"Golang",image:"https://i.pinimg.com/236x/ca/1f/74/ca1f746d6f232f87fca4e4d94ef6f3ab.jpg",level:"Beginner"},
     {name:"Javascript",image:"https://cdn.svgporn.com/logos/javascript.svg",level:"Intermediate"},
     {name:"SQL",image:"https://cdn.svgporn.com/logos/mysql.svg",level:"Intermediate"},
     {name:"Python",image:"https://cdn.svgporn.com/logos/python.svg",level:"Intermediate"},

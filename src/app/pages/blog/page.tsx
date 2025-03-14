@@ -2,6 +2,8 @@
 import {useEffect, useState} from "react";
 import Link from "next/link";
 
+import {useRouter} from "next/navigation";
+
 type Category ={
     id:number,
     name:string,
@@ -23,6 +25,7 @@ export default function Blogs(){
     const[categories,setCategories]=useState<Category[]>([])
     const[blogs,setBlogs]=useState<Blogs[]>([])
     const[message,setMessage]=useState<string>("")
+    const router =useRouter()
     useEffect(() => {
         fetchCategories()
         fetchBlogs()
@@ -74,9 +77,9 @@ export default function Blogs(){
         }
     }
     return(
-        <div className={"flex flex-col w-[80%] items-center content-center justify-center h-full"}>
+        <div className={"flex flex-col w-[90%] items-center content-center justify-center h-full "}>
             <div className={"font-bold text-xl"}>All Blogs</div>
-            <div className={"flex justify-start gap-5 "}>
+            <div className={"flex justify-start gap-5 mt-10 mb-10 "}>
                 {categories.length>0?(
                     categories.map((category,index)=>(
                         <div key={index} className={"mt-6 hover:shadow-blue-400 shadow-blue-600 shadow rounded-2xl p-2 cursor-pointer"}>{category.name}</div>
@@ -85,10 +88,16 @@ export default function Blogs(){
                     <p className={"text-red-500 mt-4 text-xl"}>{message}</p>
                 )}
             </div>
-            <div className={"flex flex-wrap w-[80%] justify-start gap-5 "}>
+            <div className={"flex flex-wrap w-[90%] ml-15 justify-center items-center m-[0 auto]  gap-4 "}>
                 {blogs.length>0?(
                     blogs.map((blog,index)=>(
-                        <div key={index} className={"mt-6 flex flex-col w-[33%]  hover:shadow-blue-400 shadow-blue-600 shadow rounded-2xl p-4 cursor-pointer"}>
+                        <div
+                            key={index}
+                            id={blog.id.toString()}
+                            className={"mt-6 flex flex-col w-[32%] min-h-72  hover:shadow-blue-400 shadow-blue-600 shadow rounded-2xl p-4 cursor-pointer"
+                        } onClick={()=>{
+                            router.push(`/pages/blog/${blog.id}`)
+                        }}>
                             <div className={"text-xl font-bold mb-10"}>{blog.title} </div>
                             <div className={"leading-7 text-xl flex flex-wrap "}>{blog.body.substring(0,200)}....
                                 <Link href={`/pages/blog/${blog.id}`} className={"underline cursor-pointer mt-2 mb-2"}>

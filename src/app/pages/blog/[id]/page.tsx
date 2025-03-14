@@ -1,8 +1,6 @@
 "use client"
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
-import { use } from 'react';
 
 
 type Category ={
@@ -19,7 +17,12 @@ type Blogs ={
     publishedOn:string,
     status:string,
     category:Category,
-    imagesInContent:object[]
+    imagesInContent:{
+        fileName:string,
+        fileType:string,
+        fileData:string,
+        id:number
+    }
     author:object
 }
 export default function ReadMore({ params }: { params: Promise<{ id: string }> }){
@@ -39,7 +42,12 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             contentInCategory: []
         },
         id: 0,
-        imagesInContent: [],
+        imagesInContent: {
+            fileName: "",
+            fileType: "",
+            fileData: "",
+            id: 0
+        },
         publishedOn: "",
         slug: "",
         status: "",
@@ -67,6 +75,19 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             setMessage("Error fetching blog info")
         }
     })
+    const createImage =()=>{
+        const byteCharacters =atob(blog.imagesInContent.fileData)
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray]);
+        return URL.createObjectURL(blob)
+    }
+    if(blog.imagesInContent!=null){
+        createImage()
+    }
     return(
         <main className={"w-[60%] flex flex-col m-[auto] justify-center items-center overflow-scroll scroll-smooth "}>
             <div className={"flex content-start justify-start mt-10"}>
@@ -74,6 +95,9 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             </div>
             {blog?(<div  className={"mt-6 flex flex-col hover:shadow-blue-400 shadow-blue-600 shadow-2xl rounded-2xl p-4 cursor-pointer"}>
                 <div className={"text-3xl font-bold mb-10"}>{blog.title}</div>
+                {blog.imagesInContent !==null&&
+                    <img src={createImage()} alt={"blog image"} className={""}></img>
+                }
                 <div className={"leading-8 text-xl flex flex-wrap"}>{blog.body.replace("/[1-4]/g","\n")}</div>
                 <div className={"leading-5 flex gap-4 w-full justify-between mt-10"}>
                     <p>Status:{blog.status}</p>
