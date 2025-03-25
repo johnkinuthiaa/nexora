@@ -61,9 +61,9 @@ export default function AboutUs(){
                     <div className={"absolute z-1 bg-orange-500 text-white"}>What i&#39;m reading</div>
                     <Image src={"https://i.pinimg.com/236x/d3/d2/4b/d3d24bbe8d9e2fe8617da09617ccac0c.jpg"}
                          alt={"book i read daily"}
-                           width={90}
-                           height={90}
-                         className={"w-full h-full p-2 object-fit"}
+                           width={500}
+                           height={500}
+                         className={"w-full h-full p-2 object-fit h-[342px] w-[318px]"}
                     ></Image>
                 </div>
 
