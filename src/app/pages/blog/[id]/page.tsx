@@ -89,17 +89,22 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
         createImage()
     }
     return(
-        <main className={"w-[60%] flex flex-col m-[auto] justify-center items-center overflow-scroll scroll-smooth "}>
-            <div className={"flex content-start justify-start mt-10"}>
+        <main className={"h-full w-full p-4 flex flex-col " +
+            "m-[auto] justify-center items-center scroll-smooth "}>
+            <div className={"flex content-start justify-start mt-2 lg:mt-10 lg:mb-10"}>
                 <p className={"gap-2 cursor-pointer "} onClick={()=>window.history.back()}><ArrowBackIosIcon/>Back</p>
             </div>
-            {blog?(<div  className={"mt-6 flex flex-col hover:shadow-blue-400 shadow-blue-600 shadow-2xl rounded-2xl p-4 cursor-pointer"}>
-                <div className={"text-3xl font-bold mb-10"}>{blog.title}</div>
+            {blog?(
+                <div  className={"mt-6 flex flex-col shadow-blue-600 shadow-2xl rounded-2xl p-4 cursor-pointer"}>
+                <div className={"text-3xl font-bold mb-10 text-center "}>{blog.title}</div>
                 {blog.imagesInContent !==null&&
-                    <img src={createImage()} alt={"blog image"} className={""}></img>
+                    <picture>
+                        <img src={createImage()} alt={"blog image"} className={""}></img>
+                    </picture>
+
                 }
-                <div className={"leading-8 text-xl flex flex-wrap"}>{blog.body.replace("/[1-4]/g","\n")}</div>
-                <div className={"leading-5 flex gap-4 w-full justify-between mt-10"}>
+                <div className={"leading-8 flex flex-wrap"}>{blog.body}</div>
+                <div className={"leading-5 flex gap-2 w-full justify-between mt-10"}>
                     <p>Status:{blog.status}</p>
                     <p>Published on: {blog.publishedOn}</p>
                 </div>

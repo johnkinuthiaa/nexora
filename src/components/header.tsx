@@ -11,7 +11,7 @@ export default function Header(){
     const pathname=usePathname()
     return(
         <header>
-            <nav className={"flex items-center justify-between p-8 [&>ul>li]:cursor-pointer"}>
+            <nav className={"flex items-center justify-between p-4 [&>ul>li]:cursor-pointer"}>
                 <div className={"font-bold text-2xl"}>Nexora blogs</div>
                 <ul className={"[&>*]:list-none lg:flex items-center gap-4 text-xl hidden md:flex "}>
                     <li className={pathname==="/pages/landingPage"?"text-blue-500 flex items-center ":""}><Link href={"/pages/landingPage"}>Home</Link></li>
