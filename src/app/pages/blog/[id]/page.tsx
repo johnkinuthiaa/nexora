@@ -26,7 +26,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }){
 
     useEffect(() => {
         fetchBlogById()
-    }, []);
+    });
     const[blog,setBlog]=useState<Blogs>({
         author: {},
         body: "",
