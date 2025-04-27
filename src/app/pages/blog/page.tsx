@@ -74,16 +74,14 @@ export default function Blogs(){
             </div>
             <div className={"flex w-full gap-4 m-auto flex-wrap p-2"}>
                 {blogs.length>0?(
-                    blogs.map(({id,body,status,publishedOn,slug,title},index)=>(
+                    blogs.map(({id,body,status,publishedOn,slug},index)=>(
                         <Fragment key={index}>
                             <BlogCard
                                 id={id}
-                                title={title}
                                 body={body}
                                 slug={slug}
                                 publishedOn={publishedOn}
-                                status={status}
-                            />
+                                status={status} title={""}                            />
                         </Fragment>
                     ))
                 ):(

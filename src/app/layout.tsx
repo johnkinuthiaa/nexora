@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import "./_keyframe-animations.scss"
 import "./_variables.scss"
+import {Toaster} from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
           <Header/>
           {children}
       </div>
-
+      <Toaster />
       </body>
     </html>
   );

@@ -21,7 +21,7 @@ import { Selection } from "@/components/tiptap-extension/selection-extension"
 import { TrailingNode } from "@/components/tiptap-extension/trailing-node-extension"
 
 // --- UI Primitives ---
-import { Button } from "@/components/tiptap-ui-primitive/button"
+
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
 import {
   Toolbar,
@@ -74,6 +74,10 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 import "@/components/tiptap-templates/simple/simple-editor.scss"
 
 import content from "@/components/tiptap-templates/simple/data/content.json"
+import {useTransition} from "react";
+import {Button} from "@/components/ui/button";
+import createBlog from "../../../../actions/createBlog"
+import {toast} from "sonner";
 
 const MainToolbarContent = ({
   onHighlighterClick,
@@ -284,7 +288,7 @@ export function SimpleEditor() {
       setMobileView("main")
     }
   }, [isMobile, mobileView])
-
+  const [isPending,startTransition] =useTransition()
   return (
     <EditorContext.Provider value={{ editor }}>
       <Toolbar
@@ -317,7 +321,22 @@ export function SimpleEditor() {
           role="presentation"
           className="simple-editor-content"
         />
+        <Button
+            className={"bg-blue-500 cursor-pointer text-white"}
+            variant={"default"}
+            disabled={isPending}
+            onClick={(e)=>{
+          e.preventDefault()
+          startTransition(()=>{
+              if(editor?.getHTML() !==undefined){
+                  createBlog(editor?.getHTML()).then(r => toast(r))
+              }
+
+          })
+
+        }}>Create blog</Button>
       </div>
+
     </EditorContext.Provider>
   )
 }

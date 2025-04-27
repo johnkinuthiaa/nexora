@@ -1,6 +1,7 @@
 "use client"
 import {use, useEffect, useState} from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ContentReader from "@/components/ContentReader";
 
 
 type Category ={
@@ -17,15 +18,9 @@ type Blogs ={
     publishedOn:string,
     status:string,
     category:Category,
-    imagesInContent:{
-        fileName:string,
-        fileType:string,
-        fileData:string,
-        id:number
-    }
     author:object
 }
-export default function ReadMore({ params }: { params: Promise<{ id: string }> }){
+export default function Page({ params }: { params: Promise<{ id: string }> }){
 
     const { id } = use(params)
 
@@ -42,12 +37,6 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             contentInCategory: []
         },
         id: 0,
-        imagesInContent: {
-            fileName: "",
-            fileType: "",
-            fileData: "",
-            id: 0
-        },
         publishedOn: "",
         slug: "",
         status: "",
@@ -75,19 +64,7 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             setMessage("Error fetching blog info")
         }
     })
-    const createImage =()=>{
-        const byteCharacters =atob(blog.imagesInContent.fileData)
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray]);
-        return URL.createObjectURL(blob)
-    }
-    if(blog.imagesInContent!=null){
-        createImage()
-    }
+
     return(
         <main className={"h-full w-full p-4 flex flex-col " +
             "m-[auto] justify-center items-center scroll-smooth "}>
@@ -96,17 +73,13 @@ export default function ReadMore({ params }: { params: Promise<{ id: string }> }
             </div>
             {blog?(
                 <div  className={"mt-6 flex flex-col shadow-blue-600 shadow-2xl rounded-2xl p-4 cursor-pointer"}>
-                <div className={"text-3xl font-bold mb-10 text-center "}>{blog.title}</div>
-                {blog.imagesInContent !==null&&
-                    <picture>
-                        <img src={createImage()} alt={"blog image"} className={""}></img>
-                    </picture>
-
-                }
-                <div className={"leading-8 flex flex-wrap"}>{blog.body}</div>
+                <div className={"text-3xl font-bold mb-10 text-center "}>{blog?.title}</div>
+                <div className={"leading-8 flex flex-wrap w-full"}>
+                    <ContentReader content={blog?.body} />
+                </div>
                 <div className={"leading-5 flex gap-2 w-full justify-between mt-10"}>
-                    <p>Status:{blog.status}</p>
-                    <p>Published on: {blog.publishedOn}</p>
+                    <p>Status:{blog?.status}</p>
+                    <p>Published on: {blog?.publishedOn}</p>
                 </div>
             </div>):(
                 <p>{message}</p>

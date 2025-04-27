@@ -9,6 +9,9 @@ import {Button} from "@/components/ui/button";
 import {Menu} from "lucide-react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import React from "react";
+import { Separator } from "@/components/ui/separator"
+
 
 const Sidebar =()=>{
     const pathname =usePathname()
@@ -34,7 +37,12 @@ const Sidebar =()=>{
                         <Button variant={"outline"} className={pathname==="/pages/contact"?"bg-blue-500 text-white flex items-center ":""}>
                             <Link href={"/pages/contact"}>Contact</Link>
                         </Button>
+                        <Separator className={"w-full m-2"}/>
+                        <div className={"font-bold"}>Create blog</div>
+                        <Button  variant={"outline"} className={pathname==="/pages/admin/category"?"bg-blue-500":""}><Link href={"/pages/admin/category"}>Create new category</Link></Button>
+                        <Button variant={"outline"}  className={pathname==="/pages/admin"?"bg-blue-500":""}><Link href={"/pages/admin"}>Create new Blog</Link></Button>
                     </div>
+                    <Separator className={"w-full m-2"}/>
                     <div className={"mt-15 flex gap-3 w-full"}>
                         <Button className={"text-blue-500 bg-blue-200 flex flex-1/2"} >Login</Button>
                         <Button className={"bg-blue-500 flex flex-1/2"}>Signup</Button>
